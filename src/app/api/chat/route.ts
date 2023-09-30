@@ -2,7 +2,7 @@
 import { Configuration, OpenAIApi } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from "ai";
 
-export const runtime = "edge";
+export const runtime = "edge"; // using edge for faster response
 
 const config = new Configuration({
   apiKey: process.env.OPENAI_KEY,
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
     messages,
-    stream: true,
+    stream: true, // to generate messages in real time
   });
 
   const stream = OpenAIStream(response);
